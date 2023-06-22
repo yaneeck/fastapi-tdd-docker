@@ -1,5 +1,7 @@
 aerich==0.7.1
 asyncpg==0.27.0
 fastapi==0.94.1
+httpx==0.23.3
+pytest==7.2.2
 tortoise-orm==0.19.3
 uvicorn==0.21.1
