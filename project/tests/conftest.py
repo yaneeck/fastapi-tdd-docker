@@ -9,7 +9,10 @@ from app.main import create_application
 
 
 def get_settings_override():
-    return Settings(testing=1, database_url=os.environ.get("DATABASE_TEST_URL"))
+    return Settings(
+            testing=1,
+            database_url=os.environ.get("DATABASE_TEST_URL")
+        )
 
 
 @pytest.fixture(scope="module")
