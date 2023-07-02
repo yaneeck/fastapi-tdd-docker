@@ -91,6 +91,13 @@ jobs:
       - name: Pull image
         run: |
           docker pull ${{ env.IMAGE }}:latest || true
+      - name: Build image
+        run: |
+          docker build \
+            --cache-from ${{ env.IMAGE }}:latest \
+            --tag ${{ env.HEROKU_REGISTRY_IMAGE }}:latest \
+            --file ./project/Dockerfile.prod \
+            "./project"
       - name: Log into the Heroku Container Registry
         run: echo ${HEROKU_AUTH_TOKEN} | docker login -u _ --password-stdin registry.heroku.com
         env:
