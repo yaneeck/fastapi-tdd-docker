@@ -92,7 +92,7 @@ jobs:
         run: |
           docker pull ${{ env.IMAGE }}:latest || true
       - name: Log into the Heroku Container Registry
-        run: docker login -u _ -p ${HEROKU_AUTH_TOKEN} registy.heroku.com
+        run: echo ${HEROKU_AUTH_TOKEN} | docker login -u _ --password-stdin registry.heroku.com
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
       - name:  Push to the registry
