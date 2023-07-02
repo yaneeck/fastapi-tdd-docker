@@ -78,7 +78,7 @@ jobs:
     needs: [build, test]
     env:
       HEROKU_APP_NAME: ancient-plains-22747
-      HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}
+      HEROKU_REGISTRY_IMAGE: registry.heroku.com/${HEROKU_APP_NAME}/summarizer
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -95,7 +95,7 @@ jobs:
         run: echo ${HEROKU_AUTH_TOKEN} | docker login -u _ --password-stdin registry.heroku.com
         env:
           HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
-      - name:  Push to the registry
+      - name: Push to the registry
         run: docker push ${{ env.HEROKU_REGISTRY_IMAGE }}
       - name: Set environment variables
         run: |
